@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 if (request.isForMainFrame()) {
                     int code = error.getErrorCode();
-                    if (code == ERROR_HOST_LOOKUP || code == ERROR_CONNECT || code == ERROR_TIMEOUT || code == ERROR_INTERNET_DISCONNECTED) {
+                    if (code == WebViewClient.ERROR_HOST_LOOKUP || code == WebViewClient.ERROR_CONNECT || code == WebViewClient.ERROR_TIMEOUT) {
                         showCustomError(0);
                     } else {
                         showCustomError(3);
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 lastUrl = failingUrl;
-                if (errorCode == ERROR_HOST_LOOKUP || errorCode == ERROR_CONNECT || errorCode == ERROR_TIMEOUT) {
+                if (errorCode == WebViewClient.ERROR_HOST_LOOKUP || errorCode == WebViewClient.ERROR_CONNECT || errorCode == WebViewClient.ERROR_TIMEOUT) {
                     showCustomError(0);
                 } else {
                     showCustomError(3);
@@ -207,4 +207,4 @@ public class LoginActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-}
+                }
