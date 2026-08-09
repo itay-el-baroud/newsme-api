@@ -1,26 +1,43 @@
 package com.medianote.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        TokenManager tokenManager = new TokenManager(this);
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+
+        new Handler().postDelayed(() -> {
+            SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
+            String token = prefs.getString("auth_token", null);
+            String role = prefs.getString("user_role", null);
+            String username = prefs.getString("username", null);
+
             Intent intent;
-            if (tokenManager.hasToken()) {
-                intent = new Intent(SplashActivity.this, HomeActivity.class);
-            } else {
+
+            if (token == null) {
+                // مفيش تسجيل دخول خالص
                 intent = new Intent(SplashActivity.this, LoginActivity.class);
+            } else if (role == null) {
+                // سجل دخول بس لسه مختارش نوع الخدمة
+                intent = new Intent(SplashActivity.this, RoleSelectionActivity.class);
+            } else if (username == null) {
+                // اختار النوع بس لسه محطش اسمه
+                intent = new Intent(SplashActivity.this, UsernameActivity.class);
+            } else {
+                // كل حاجة كاملة يدخل على قايمة المستخدمين
+                intent = new Intent(SplashActivity.this, UsersActivity.class);
             }
+
             startActivity(intent);
             finish();
-        }, 1500);
+
+        }, 1200); // ثانية واحدة انتظار
     }
 }
