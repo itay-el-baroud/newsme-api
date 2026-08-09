@@ -1,87 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical">
-    <RelativeLayout
+    android:background="#121212">
+
+    <WebView
+        android:id="@+id/webview_login"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/primary"
-        android:padding="8dp">
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_back"
-            android:visibility="gone" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/login"
-            android:textColor="@color/text_white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/layout_no_internet"
+        layout="@layout/layout_no_internet"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/accent"
-        android:visibility="gone" />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <WebView
-            android:id="@+id/webView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <LinearLayout
-            android:id="@+id/errorLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="32dp"
-            android:visibility="gone">
-            <ImageView
-                android:id="@+id/imgErrorIcon"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ic_no_internet" />
-            <TextView
-                android:id="@+id/txtErrorTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="لا يوجد اتصال"
-                android:textColor="@color/text_white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/txtErrorMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                android:text="رسالة الخطأ"
-                android:textColor="#9E9E9E"
-                android:textSize="14sp" />
-            <Button
-                android:id="@+id/btnRetry"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="32dp"
-                android:backgroundTint="@color/accent"
-                android:text="اعادة المحاولة"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </FrameLayout>
-</LinearLayout>
+        android:layout_height="match_parent" />
+
+</FrameLayout>
