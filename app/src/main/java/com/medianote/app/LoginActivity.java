@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -63,9 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         txtErrorMessage = findViewById(R.id.txtErrorMessage);
         btnRetry = findViewById(R.id.btnRetry);
 
-        WebSettings s = webView.getSettings();
-        s.setJavaScriptEnabled(true);
-        s.setDomStorageEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -82,19 +80,29 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 return false;
             }
+
             @Override
             public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
                 progressBar.setVisibility(View.GONE);
+                // لما الصفحة تحمل بنجاح اخفي صفحة الخطأ
+                if (errorLayout.getVisibility() == View.VISIBLE) {
+                    errorLayout.setVisibility(View.GONE);
+                    webView.setVisibility(View.VISIBLE);
+                }
             }
+
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                showError();
+                super.onReceivedError(view, request, error);
+                // ده التعديل المهم: متظهرش صفحة مفيش انترنت الا لو الخطأ في الصفحة الرئيسية نفسها
+                if (request.isForMainFrame()) {
+                    showError();
+                }
             }
         });
 
         btnRetry.setOnClickListener(v -> loadLogin());
-        btnBack.setOnClickListener(v -> onBackPressed());
-
         loadLogin();
     }
 
@@ -121,4 +129,4 @@ public class LoginActivity extends AppCompatActivity {
         NetworkInfo info = cm.getActiveNetworkInfo();
         return info != null && info.isConnected();
     }
-    }
+}
