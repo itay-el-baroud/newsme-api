@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MediaNote</string>
+    <string name="loading">جاري التحميل...</string>
+    <string name="back">رجوع</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="create_account">إنشاء حساب</string>
+    <string name="forgot_password">هل نسيت كلمة المرور؟</string>
+</resources>
