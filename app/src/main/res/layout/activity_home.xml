@@ -9,8 +9,15 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/logo" />
+    <ProgressBar
+        android:id="@+id/progressBarHome"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:indeterminateTint="@color/accent"
+        android:visibility="gone" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,16 +25,42 @@
         android:textColor="@color/text_white"
         android:textSize="20sp"
         android:textStyle="bold" />
-    <TextView
-        android:id="@+id/txtToken"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@color/primary"
-        android:padding="16dp"
-        android:text="التوكن سيظهر هنا"
-        android:textColor="@color/text_white"
-        android:textSize="14sp" />
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="الاسم: ..."
+            android:textColor="@color/text_white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="12dp"
+            android:background="#222222" />
+        <TextView
+            android:id="@+id/txtId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID: ..."
+            android:textColor="@color/text_white"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/txtToken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="البيانات محفوظة"
+            android:textColor="#9E9E9E"
+            android:textSize="12sp" />
+    </LinearLayout>
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
@@ -36,4 +69,12 @@
         android:backgroundTint="@color/accent"
         android:text="تسجيل خروج"
         android:textColor="@color/white" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="البيانات محفوظة وستظهر عند فتح التطبيق مرة اخرى حتى بدون انترنت"
+        android:textColor="#757575"
+        android:textSize="11sp" />
 </LinearLayout>
